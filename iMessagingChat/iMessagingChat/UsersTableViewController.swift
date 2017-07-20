@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class UsersTableViewController: UITableViewController {
     
@@ -29,11 +30,37 @@ class UsersTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.checkLogin()
+    }
+    
+    
+    
     
     //MARK: - IBACtions
     
     @IBAction func signOutPressed(_ sender: UIBarButtonItem) {
+        
+        do {
+            try Auth.auth().signOut()
+            self.checkLogin()
+        } catch {
+            // Error
+            print("Error Signing out")
+        }
+        
     }
+    
+    //MARK: - Functions
+    func checkLogin() {
+        if Auth.auth().currentUser == nil {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    
+    
+    
     
 
     override func didReceiveMemoryWarning() {

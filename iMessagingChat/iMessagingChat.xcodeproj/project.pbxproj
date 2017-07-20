@@ -16,6 +16,7 @@
 		378EC1301F212AE000A9FE2C /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378EC12F1F212AE000A9FE2C /* UsersTableViewController.swift */; };
 		378EC1331F212B1200A9FE2C /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378EC1321F212B1200A9FE2C /* UsersTableViewCell.swift */; };
 		378EC1351F212BC000A9FE2C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378EC1341F212BC000A9FE2C /* ChatViewController.swift */; };
+		378EC1381F21374B00A9FE2C /* profile_picture.png in Resources */ = {isa = PBXBuildFile; fileRef = 378EC1371F21374B00A9FE2C /* profile_picture.png */; };
 		992BB32BC18C18D8898B0037 /* Pods_iMessagingChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7E8D85C5086F98BBFD582FF /* Pods_iMessagingChat.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		378EC12F1F212AE000A9FE2C /* UsersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
 		378EC1321F212B1200A9FE2C /* UsersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
 		378EC1341F212BC000A9FE2C /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		378EC1371F21374B00A9FE2C /* profile_picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_picture.png; sourceTree = "<group>"; };
 		B10C8619E36F1705591CD283 /* Pods-iMessagingChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMessagingChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-iMessagingChat/Pods-iMessagingChat.release.xcconfig"; sourceTree = "<group>"; };
 		C7E8D85C5086F98BBFD582FF /* Pods_iMessagingChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMessagingChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -78,6 +80,7 @@
 		378EC1191F2126C600A9FE2C /* iMessagingChat */ = {
 			isa = PBXGroup;
 			children = (
+				378EC1361F21373800A9FE2C /* Images */,
 				378EC1311F212AF600A9FE2C /* Cells */,
 				378EC12E1F212AB200A9FE2C /* VC */,
 				378EC11A1F2126C600A9FE2C /* AppDelegate.swift */,
@@ -106,6 +109,14 @@
 				378EC1321F212B1200A9FE2C /* UsersTableViewCell.swift */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		378EC1361F21373800A9FE2C /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				378EC1371F21374B00A9FE2C /* profile_picture.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		BEBDFA9D35C0C46288F188BA /* Frameworks */ = {
@@ -182,6 +193,7 @@
 				378EC1251F2126C600A9FE2C /* LaunchScreen.storyboard in Resources */,
 				378EC12D1F21276900A9FE2C /* GoogleService-Info.plist in Resources */,
 				378EC1221F2126C600A9FE2C /* Assets.xcassets in Resources */,
+				378EC1381F21374B00A9FE2C /* profile_picture.png in Resources */,
 				378EC1201F2126C600A9FE2C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
