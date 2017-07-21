@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     //MARK: - IBOutlets
@@ -29,6 +29,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        setupButtons()
+        
+        // Hide And Show Views according to sign in or sign up mode
+        loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? enableDisable(modeLogin: true) : enableDisable(modeLogin: false)
+        
+        // add tap guesture recognizer to the image View to pick the profile picture
+        profilePicture.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.selectProfileImage)))
     }
     
     
@@ -56,16 +62,54 @@ class ViewController: UIViewController {
         }
     }
     
+    // Hide and Show Views according to sign up and sign in mode
+    func enableDisable(modeLogin: Bool) {
+        nameTextField.isHidden = modeLogin
+        profilePicture.isHidden = modeLogin
+        profilePicture.isUserInteractionEnabled = !modeLogin
+        signInButton.isHidden = !modeLogin
+        signUpButton.isHidden = modeLogin
+    }
+    
+    // pick the profile picture
+    func selectProfileImage () {
+        // print("Profile Image Tap")
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        self.present(imagePickerController, animated: true, completion: nil)
+        
+    }
     
     
-    
+    // MARK: - UIImagePickerControllerDelegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            profilePicture.image = editedImage
+        } else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            profilePicture.image = originalImage
+        }
+        dismiss(animated: true, completion: nil)
+    }
     
     
     
     //MARK: - IBActions
     
     @IBAction func loginRegisterSegmentedControlPressed(_ sender: UISegmentedControl) {
+        
+        // Hide And Show Views according to sign in or sign up mode
+        loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? enableDisable(modeLogin: true) : enableDisable(modeLogin: false)
+        
+        
+        
     }
+    
+    
+    
+    
+    
     @IBAction func signInPressed(_ sender: UIButton) {
         guard let email = emailTextField.text, emailTextField.text != "", let password = passwordTextField.text, passwordTextField.text != "" else {
             print("Please provide Email and password to login")
