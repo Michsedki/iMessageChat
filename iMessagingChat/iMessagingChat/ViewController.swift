@@ -25,10 +25,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       setupButtons()
+        setupButtons()
         
         // Hide And Show Views according to sign in or sign up mode
         loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? enableDisable(modeLogin: true) : enableDisable(modeLogin: false)
@@ -127,36 +127,86 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         
     }
-
+    
     
     
     
     @IBAction func signUpPressed(_ sender: UIButton) {
-    
+        
         guard let name = nameTextField.text, nameTextField.text != "", let password = passwordTextField.text, passwordTextField.text != "", let email = emailTextField.text, emailTextField.text != "" else {
             
             // error message
             print("Please provide name, email and password to signup")
             return
         }
-    
-    // Register the user
-    activityIndicator.stopAnimating()
+        
+        // Register the user
+        activityIndicator.stopAnimating()
         Auth.auth().createUser(withEmail: email, password: password) { (User: User?, error: Error?) in
             if error != nil {
                 print(error?.localizedDescription ?? "Error registerng user")
                 self.stopAnimating()
                 
             } else {
-                print("User Registered Successfully")
-                self.checkLogin()
+//                print("User Registered Successfully")
+                guard let userID = User?.uid else {
+                    self.stopAnimating()
+                    print("Error Fetching User ID")
+                    return
+                }
+                
+                // Store Image in file Storage
+                let imageName: String = "\(userID)_profile_image.jpg"
+                
+                let storageRef = Storage.storage().reference()
+                let profileImageRef = storageRef.child("profile_images").child(imageName)
+                
+                let imageData: Data = UIImageJPEGRepresentation(self.profilePicture.image!, 0.4)!
+                
+                profileImageRef.putData(imageData, metadata: nil, completion: { (metaData, error) in
+                    if error != nil {
+                        // Error
+                        print(error?.localizedDescription ?? "error uploading profile image")
+                        self.stopAnimating()
+                        return
+                    } else {
+                        let imageURL: String = (metaData?.downloadURL()?.absoluteString)!
+                        
+                        
+                        // Store User Data base
+                        let ref = Database.database().reference()
+                        let usersRef = ref.child("users").child(userID)
+                        let userObject = ["name": name, "email": email, "profile_image" : imageURL]
+                        usersRef.updateChildValues(userObject, withCompletionBlock: { (error, dbreference) in
+                            if error != nil {
+                                // error
+                                print(error?.localizedDescription ?? "error upload user info")
+                                self.stopAnimating()
+                                return
+                            } else {
+                                // registered and uplaoded data successfully
+                                self.stopAnimating()
+                                print("All records saved successfully")
+                                self.checkLogin()
+                                
+                            }
+                        })
+                        
+                        
+                    }
+                })
+                
+                
+                
+                
+                
             }
             
         }
-    
-    
-    
-    
+        
+        
+        
+        
     }
     
     // Stop Animating the activity indicator
@@ -166,6 +216,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-
+    
 }
 
