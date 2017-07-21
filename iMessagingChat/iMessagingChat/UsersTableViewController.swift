@@ -59,7 +59,10 @@ class UsersTableViewController: UITableViewController {
             if let userDictionary = snapshot.value as? [String: String] {
                 
                 let user = userObject(name:  userDictionary["name"]!, imageUrl:  userDictionary["profile_image"]!, userID:  snapshot.key)
+                
+                if Auth.auth().currentUser?.uid != snapshot.key {
                 self.users.append(user)
+                }
                 self.tableView.reloadData()
                
                 
@@ -145,6 +148,11 @@ class UsersTableViewController: UITableViewController {
      
     
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let index = tableView.indexPathForSelectedRow?.row
+        let destination = segue.destination as! ChatViewController
+            destination.toID = users[index!].userID
+        
      
      }
     
