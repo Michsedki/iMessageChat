@@ -241,7 +241,7 @@
                             <constraint firstAttribute="trailing" secondItem="d70-48-yra" secondAttribute="trailing" id="6K2-ct-Mpq"/>
                             <constraint firstItem="3Qu-2m-fGt" firstAttribute="leading" secondItem="ve1-mJ-uxp" secondAttribute="trailing" constant="8" id="KGR-Oy-ZR8"/>
                             <constraint firstItem="3Qu-2m-fGt" firstAttribute="leading" secondItem="ve1-mJ-uxp" secondAttribute="trailing" constant="8" id="S8e-6x-uP7"/>
-                            <constraint firstItem="d70-48-yra" firstAttribute="top" secondItem="PBs-xY-dlI" secondAttribute="bottom" constant="8" id="S93-FX-j4o"/>
+                            <constraint firstItem="d70-48-yra" firstAttribute="top" secondItem="PBs-xY-dlI" secondAttribute="bottom" constant="8" id="S93-FX-j4o" userLabel="chatTableViewTopConstraint"/>
                             <constraint firstItem="356-1c-u1y" firstAttribute="top" secondItem="ve1-mJ-uxp" secondAttribute="bottom" constant="8" id="SCN-v9-3yX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3Qu-2m-fGt" secondAttribute="trailing" id="WQa-BI-Xi3"/>
                             <constraint firstItem="ve1-mJ-uxp" firstAttribute="leading" secondItem="ghL-CK-ecG" secondAttribute="leadingMargin" id="gSZ-bt-mpr"/>
@@ -252,6 +252,7 @@
                     <navigationItem key="navigationItem" title="Title" id="NaJ-wR-2k3"/>
                     <connections>
                         <outlet property="chatTableView" destination="d70-48-yra" id="OjF-ZV-HNb"/>
+                        <outlet property="chatTableViewTopConstraint" destination="S93-FX-j4o" id="VkO-7w-hWc"/>
                         <outlet property="messageTextField" destination="ve1-mJ-uxp" id="cOD-sT-MJF"/>
                         <outlet property="navigationBar" destination="NaJ-wR-2k3" id="c4V-Lr-QFa"/>
                     </connections>
